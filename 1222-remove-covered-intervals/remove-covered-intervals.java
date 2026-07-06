@@ -5,17 +5,18 @@ class Solution {
             return b[1]-a[1];
             return a[0]-b[0];
         });
-        int count=0;
-      int val=0;
-      int left =-1;
-      int right =-1;
-        for(int[] interval : intervals){
-            if(interval[0]>left && interval[1]>right){
-            count++;
-            left= interval[0];
+        int ans = intervals.length;
+        int maxEnd = intervals[0][1];
+
+        for (int i = 1; i < intervals.length; i++) {
+
+            if (intervals[i][1] <= maxEnd) {
+                ans--;
+            } else {
+                maxEnd = intervals[i][1];
             }
-            right = Math.max(right,interval[1]);
         }
-        return count;
+
+        return ans;
     }
 }
